@@ -3,6 +3,7 @@ from decimal import Decimal
 
 import requests
 from bs4 import BeautifulSoup
+from bs4.element import Tag
 
 
 def detect_meat(product_name):
@@ -53,9 +54,20 @@ def main():
 
     if not product_names:
         # #product-options-wrapper h2
-        product_names = soup.find(id='product-options-wrapper').find_all('h2')
+        wrapper = soup.find(id='product-options-wrapper')
+
+        if wrapper:
+            product_names = wrapper.find_all('h2')
+
+    # Product detail page
+    if not product_names:
+        product_names = soup.find(id='productname')
 
     totals = []
+
+    # Handle situations where we just get a single element/
+    if isinstance(product_names, Tag):
+        product_names = [product_names]
 
     for product in product_names:
         product_name = product.text.strip()
