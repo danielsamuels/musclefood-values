@@ -1,5 +1,7 @@
 # musclefood-values
 
+![](https://i.imgur.com/MeLmG9u.png)
+
 A simple tool to determine how much of each type of meat you're getting in each MuscleFood hamper.  Might eventually turn into a website.
 
 ### Usage
